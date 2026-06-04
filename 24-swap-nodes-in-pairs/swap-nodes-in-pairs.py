@@ -5,16 +5,12 @@
 #         self.next = next
 class Solution:
     def swapPairs(self, head):
-
         # Base case
         if not head or not head.next:
             return head
-
         first = head
         second = head.next
-
         # Swap remaining list
         first.next = self.swapPairs(second.next)
         second.next = first
-
         return second
