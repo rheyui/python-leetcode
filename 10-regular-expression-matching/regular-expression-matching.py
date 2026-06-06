@@ -1,38 +1,33 @@
-class Solution(object):
-    def isMatch(self, s, p):
-        
-        memo = {}
+class Solution:
+    def isMatch(self, s: str, p: str) -> bool:
 
-        def dp(i, j):
-            
-            if (i, j) in memo:
-                return memo[(i, j)]
+        m = len(s)
+        n = len(p)
 
-            # If pattern is finished
-            if j == len(p):
-                return i == len(s)
+        dp = [[False] * (n + 1) for _ in range(m + 1)]
 
-            # Check current match
-            first_match = (
-                i < len(s) and
-                (p[j] == s[i] or p[j] == '.')
-            )
+        dp[0][0] = True
 
-            # Handle '*'
-            if j + 1 < len(p) and p[j + 1] == '*':
-                
-                # Two choices:
-                # 1. Skip x*
-                # 2. Use x* if first character matches
-                ans = dp(i, j + 2) or (
-                    first_match and dp(i + 1, j)
-                )
+        # Handle patterns like a*, a*b*, a*b*c*
+        for j in range(2, n + 1):
+            if p[j - 1] == '*':
+                dp[0][j] = dp[0][j - 2]
 
-            else:
-                ans = first_match and dp(i + 1, j + 1)
+        for i in range(1, m + 1):
+            for j in range(1, n + 1):
 
-            memo[(i, j)] = ans
-            return ans
+                # Normal character or '.'
+                if p[j - 1] == s[i - 1] or p[j - 1] == '.':
+                    dp[i][j] = dp[i - 1][j - 1]
 
-        return dp(0, 0)
-        
+                # Handle '*'
+                elif p[j - 1] == '*':
+
+                    # Ignore previous character + *
+                    dp[i][j] = dp[i][j - 2]
+
+                    # Use *
+                    if p[j - 2] == s[i - 1] or p[j - 2] == '.':
+                        dp[i][j] = dp[i][j] or dp[i - 1][j]
+
+        return dp[m][n]
