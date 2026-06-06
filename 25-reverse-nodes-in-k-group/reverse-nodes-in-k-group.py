@@ -1,10 +1,11 @@
-class Solution(object):
-    def reverseKGroup(self, head, k):
-        """
-        :type head: ListNode
-        :type k: int
-        :rtype: ListNode
-        """
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+class Solution:
+    def reverseKGroup(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
 
         dummy = ListNode(0)
         dummy.next = head
@@ -13,12 +14,11 @@ class Solution(object):
 
         while True:
 
-            # Find kth node
             kth = prev_group
 
-            for _ in range(k):
+            # Find kth node
+            for i in range(k):
                 kth = kth.next
-
                 if not kth:
                     return dummy.next
 
@@ -34,8 +34,9 @@ class Solution(object):
                 prev = curr
                 curr = temp
 
-            # Connect reversed group
             temp = prev_group.next
+
             prev_group.next = kth
+
             prev_group = temp
         
