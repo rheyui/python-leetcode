@@ -1,14 +1,4 @@
-class Solution(object):
+class Solution:
     def lengthOfLastWord(self, s):
-        n = len(s)
-        count = 0
-        i = n - 1
-        # Skip trailing spaces
-        while i >= 0 and s[i] == " ":
-            i -= 1
-        # Count last word length
-        while i >= 0 and s[i] != " ":
-            count += 1
-            i -= 1
-        return count
+        return len(s.strip().split()[-1])
         
