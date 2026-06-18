@@ -33,4 +33,4 @@ class Solution:
             next_node.next = prev.next
             prev.next = next_node
         
-        return dummy.next
+        return dummy.next 
