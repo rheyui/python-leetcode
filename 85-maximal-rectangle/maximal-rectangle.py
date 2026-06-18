@@ -30,4 +30,4 @@ class Solution:
 
                 stack.append(i)
 
-        return max_area
+        return max_area  
