@@ -8,7 +8,7 @@ class Solution:
                 a[t][j] = x; x += 1
             t += 1
 
-            for i in range(t, b + 1):
+            for i in range(t, b + 1):   
                 a[i][r] = x; x += 1
             r -= 1
 
