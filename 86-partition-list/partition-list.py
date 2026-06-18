@@ -35,4 +35,4 @@ class Solution:
         # Connect small list to large list
         small.next = large_dummy.next
 
-        return small_dummy.next
+        return small_dummy.next  
