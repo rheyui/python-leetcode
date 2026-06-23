@@ -13,4 +13,4 @@ class Solution:
 
             n = total
 
-        return n == 1
+        return n == 1 
