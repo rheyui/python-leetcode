@@ -15,7 +15,7 @@ class Solution:
             if start == end:
                 ans.append(str(start))
             else:
-                ans.append(f"{start}->{end}")
+                ans.append(f"{start}->{end}")    
 
             i += 1  
 
