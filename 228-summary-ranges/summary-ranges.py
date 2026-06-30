@@ -17,6 +17,6 @@ class Solution:
             else:
                 ans.append(f"{start}->{end}")
 
-            i += 1
+            i += 1  
 
         return ans
